@@ -1,5 +1,18 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
 body {
+  background: #444;
   margin: 0;
+  padding: 40px;
+  font-size: 1.6rem;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
@@ -10,4 +23,19 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+img {
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+}
+
+a,
+a:visited {
+  color: #3B3B98;
 }

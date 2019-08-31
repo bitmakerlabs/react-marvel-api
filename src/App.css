@@ -1,33 +1,320 @@
-.App {
+/*
+// --------------------------------------------------
+// APP STYLES
+// --------------------------------------------------
+*/
+.app {
+  max-width: 90rem;
+  margin: 0 auto;
+}
+
+/*
+// --------------------------------------------------
+// SearchBar STYLES
+// --------------------------------------------------
+*/
+.search-bar {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+  box-shadow: 0 1rem 2rem -0.3rem rgba(0, 0, 0, 0.5);
+}
+
+.search-bar__field {
+  background: #efefef;
+  border: 0;
+  padding: 1.5rem;
+  font-size: 2rem;
+  flex-grow: 1;
+}
+
+.search-bar__submit {
+  flex-grow: 1;
+  border: 0;
+  font-size: 1.6rem;
+  font-weight: 600;
+  padding: 2rem 2.5rem;
+  color: #fff;
+  background: #3B3B98;
+}
+
+@media (min-width: 768px) {
+  .search-bar__submit {
+    flex-grow: 0;
+  }
+}
+
+/*
+// --------------------------------------------------
+// SearchTypeControls STYLES
+// --------------------------------------------------
+*/
+.search-type-controls {
+  background: #ddd;
+  display: flex;
+  align-items: center;
+  padding: 1.5rem 1rem;
+}
+
+.search-type-controls label {
+  cursor: pointer;
+  padding: 0 1rem;
+  font-weight: 700;
+}
+
+.search-type-controls input[type="radio"] {
+  display: none;
+}
+
+.search-type-controls span {
+  display: block;
+  color: #444;
+  padding-top: 0.5rem;
+  padding-bottom: 0.3rem;
+  border-bottom: solid 0.2rem transparent;
+}
+
+.search-type-controls input[type="radio"]:checked + span {
+  color: #3B3B98;
+  border-bottom-color: #3B3B98;
+}
+
+/*
+// --------------------------------------------------
+// ResultList STYLES
+// --------------------------------------------------
+*/
+.results-list {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+
+/*
+// --------------------------------------------------
+// ResultCard STYLES
+// --------------------------------------------------
+*/
+.result-card {
+  flex: 0 0 48%;
+  display: flex;
+  flex-direction: column;
+  align-items: inherit;
+  background: #efefef;
+  box-shadow: 0 1rem 2rem -0.3rem rgba(0, 0, 0, 0.5);
+  margin-right: 4%;
+  margin-bottom: 4%;
+}
+
+.result-card:nth-child(2n) {
+  margin-right: 0;
+}
+
+.result-card__image {
+  width: 100%;
+  background: #111;
+  margin: 0;
+  position: relative;
+  padding-top: 100%;
+  overflow: hidden;
+}
+
+.result-card__image:hover img {
+  transform: translate(-50%, -50%) translateZ(0) scale(1.1);
+}
+
+.result-card__image img {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateZ(0);
+  transition: transform 0.2s;
+}
+
+.result-card__info {
+  padding: 2rem;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.result-card__info > *:first-child {
+  margin-top: 0;
+}
+
+.result-card__info > *:last-child {
+  margin-bottom: 0;
+}
+
+.result-card--is-comic .result-card__image {
+  padding-top: 150%;
+}
+
+@media (min-width: 768px) {
+  .result-card {
+    flex: 0 0 32%;
+    margin-right: 2%;
+  }
+
+  .result-card:nth-child(2n) {
+    margin-right: 2%;
+  }
+
+  .result-card:nth-child(3n) {
+    margin-right: 0;
+  }
+}
+
+/*
+// --------------------------------------------------
+// LoadMore STYLES
+// --------------------------------------------------
+*/
+.load-more {
+  display: block;
+  min-width: 20rem;
+  margin: 0 auto;
+  margin-top: 3rem;
+  padding: 0 3rem;
+  color: #fff;
+  border-radius: 2.2rem;
+  background: #3B3B98;
+  box-shadow: 0 1rem 2rem -0.3rem rgba(0, 0, 0, 0.5);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 4.4rem;
+}
+
+/*
+// --------------------------------------------------
+// ResultDetails STYLES
+// --------------------------------------------------
+*/
+.result-details {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.result-details__backdrop {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.result-details__info {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  max-width: 60rem;
+  max-height: 80vh;
+  margin: 0 auto 24vh;
+  position: relative;
+}
+
+.result-details__info__header {
+  height: 20vh;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.result-details__info__body {
+  position: relative;
+  background: #fafafa;
+  padding: 3rem;
+  padding-top: 14.5rem;
+}
+
+.result-details__info__body__content {
+  max-height: calc(60vh - 17.5rem);
+  overflow: auto;
+  padding: 0 3rem;
+  border-top: solid 0.1rem #ddd;
+  border-bottom: solid 0.1rem #ddd;
+  background: #efefef;
+}
+
+.result-details__info__header figure {
+  width: 25rem;
+  height: 25rem;
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0;
+  background: #fafafa;
+  box-shadow: 0 1rem 2rem -0.3rem rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.result-details__info img {
+  width: 100%;
+}
+
+.result-details__info button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 5rem;
+  height: 5rem;
+  background: transparent;
+}
+
+.result-details__info button::before,
+.result-details__info button::after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60%;
+  height: 0.2rem;
+  background: #222;
+}
+
+.result-details__info button::before {
+  transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.result-details__info button::after {
+  transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+/*
+// --------------------------------------------------
+// NoResults, Error, and Loading STYLES
+// --------------------------------------------------
+*/
+.no-results,
+.loading,
+.error {
+  width: 100%;
+  padding: 3rem;
+  color: #efefef;
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.no-results h1,
+.loading h1,
+.error h1 {
+  font-size: 2.4rem;
+  text-shadow: 0 0.2rem 0.2rem rgba(0, 0, 0, 0.5);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.error h1 {
+  color: #eb2f06;
 }
