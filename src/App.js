@@ -88,12 +88,18 @@ class App extends Component {
   componentDidUpdate(_, prevState) {
     const searchTerm = this.state.searchTerm;
     const prevSearchTerm = prevState.searchTerm;
+    const searchType = this.state.searchType;
+    const prevSearchType = prevState.searchType;
 
     if (
       searchTerm
-      && (searchTerm !== prevSearchTerm)
+      && (searchTerm !== prevSearchTerm || searchType !== prevSearchType)
     ) {
-      this.fetchCharacters();
+      if (this.state.searchType === 'Characters') {
+        this.fetchCharacters();
+      } else {
+        this.fetchComics();
+      }
     }
   }
 
