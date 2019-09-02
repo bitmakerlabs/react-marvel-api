@@ -32,12 +32,21 @@ export class MarvelService {
   // CHARACTERS-RELATED METHODS
   // --------------------------------------------------
   getCharacters(config = {}) {
-    console.warn('Whoops, it looks like this method hasn\'t been implemented yet.');
+    // console.warn('Whoops, it looks like this method hasn\'t been implemented yet.');
+
     // TODO:
     // - Create the `params` object.
+    const params = { ...config, ...this.getAuthConfig() };
+
     // - Extract the correct endpoint from `ENDPOINTS`.
+    const endpoint = MarvelService.ENDPOINTS.characters;
+
     // - Dispatch a request using `axios.get()`.
-    // - Parse and return the response.
+    return axios.get(endpoint, { params: params })
+      .then((response) => {
+        // - Parse and return the response.
+        return response.data.data;
+      });
   }
 
   getCharacter(id, config = {}) {
