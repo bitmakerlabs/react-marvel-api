@@ -5,6 +5,7 @@ import { ResultDetails } from './components/ResultDetails';
 import { SearchBar } from './components/SearchBar';
 import { Error } from './components/Error';
 import { Loading } from './components/Loading';
+import { LoadMore } from './components/LoadMore';
 import { MarvelService } from './services/MarvelService';
 
 class App extends Component {
@@ -17,11 +18,13 @@ class App extends Component {
     this.state = {
       searchTerm: '',
       results: [],
+      canLoadMore: false,
       selectedResult: null,
     };
 
     this.fetchCharacters = this.fetchCharacters.bind(this);
     this.fetchCharacter = this.fetchCharacter.bind(this);
+    this.fetchMoreCharacters = this.fetchMoreCharacters.bind(this);
 
     this.marvelService = new MarvelService({
       apiKey: this.props.apiKey,
@@ -44,6 +47,10 @@ class App extends Component {
           />
         );
 
+    const loadMoreElem = this.state.canLoadMore
+      ? <LoadMore onClick={ this.fetchMoreCharacters }/>
+      : '';
+
     const detailsElem = this.state.selectedResult
       ? (
         <ResultDetails
@@ -64,6 +71,7 @@ class App extends Component {
           onSubmit={ (searchTerm) => this.setState({ searchTerm }) }
         />
         { resultsElem }
+        { loadMoreElem }
         { detailsElem }
       </section>
     );
@@ -104,6 +112,7 @@ class App extends Component {
         // Remove the loading state.
         this.setState({
           results: data.results,
+          canLoadMore: data.total > data.offset + data.count,
           isLoading: false,
         });
       })
@@ -124,6 +133,24 @@ class App extends Component {
       .then((data) => {
         // Update the application state using the resulting data.
         this.setState({ selectedResult: data.results[0] });
+      })
+      .catch((err) => {
+        // Handle potential errors.
+        console.error(err);
+        this.setState({ hasError: true });
+      });
+  }
+
+  fetchMoreCharacters() {
+    this.marvelService.getCharacters({
+      nameStartsWith: this.state.searchTerm,
+      offset: this.state.results.length,
+    })
+      .then((data) => {
+        this.setState({
+          results: [...this.state.results, ...data.results],
+          canLoadMore: data.total > data.offset + data.count,
+        });
       })
       .catch((err) => {
         // Handle potential errors.
