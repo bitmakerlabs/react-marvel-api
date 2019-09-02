@@ -24,6 +24,8 @@ export class SearchBar extends Component {
         />
         <SearchTypeControls
           searchType={ this.props.searchType }
+          onCharactersClick={ () => this.props.onSelect('Characters') }
+          onComicsClick={ () => this.props.onSelect('Comics') }
         />
         <button className="search-bar__submit" type="submit">Search</button>
       </form>

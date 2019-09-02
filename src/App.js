@@ -71,6 +71,7 @@ class App extends Component {
           searchTerm={ this.state.searchTerm }
           searchType={ this.state.searchType }
           onSubmit={ (searchTerm) => this.setState({ searchTerm }) }
+          onSelect={ (searchType) => this.setState({ searchType }) }
         />
         { resultsElem }
         { loadMoreElem }
