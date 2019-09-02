@@ -46,6 +46,7 @@ class App extends Component {
           <ResultsList
             results={ this.state.results }
             searchTerm={ this.state.searchTerm }
+            searchType={ this.state.searchType }
             onResultClick={ this.fetchCharacter }
           />
         );

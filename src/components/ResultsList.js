@@ -10,7 +10,7 @@ export class ResultsList extends Component {
           <ResultCard
             key={ result.id }
             image={ result.thumbnail.path + '.' + result.thumbnail.extension }
-            title={ result.name }
+            title={ this.props.searchType === 'Characters' ? result.name : result.title }
             onClick={ () => this.props.onResultClick(result.id) }
           />
         );
