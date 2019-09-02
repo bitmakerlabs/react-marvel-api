@@ -28,6 +28,7 @@ class App extends Component {
     this.fetchMoreCharacters = this.fetchMoreCharacters.bind(this);
 
     this.fetchComics = this.fetchComics.bind(this);
+    this.fetchComic = this.fetchComic.bind(this);
     this.fetchMoreComics = this.fetchMoreComics.bind(this);
 
     this.marvelService = new MarvelService({
@@ -48,7 +49,7 @@ class App extends Component {
             results={ this.state.results }
             searchTerm={ this.state.searchTerm }
             searchType={ this.state.searchType }
-            onResultClick={ this.fetchCharacter }
+            onResultClick={ this.state.searchType === 'Characters' ? this.fetchCharacter : this.fetchComic }
           />
         );
 
@@ -184,6 +185,17 @@ class App extends Component {
           canLoadMore: data.total > data.offset + data.count,
           isLoading: false,
         });
+      })
+      .catch((err) => {
+        console.error(err);
+        this.setState({ hasError: true });
+      });
+  }
+
+  fetchComic(id) {
+    this.marvelService.getComic(id)
+      .then((data) => {
+        this.setState({ selectedResult: data.results[0] });
       })
       .catch((err) => {
         console.error(err);
