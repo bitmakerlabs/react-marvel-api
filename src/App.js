@@ -28,6 +28,7 @@ class App extends Component {
     this.fetchMoreCharacters = this.fetchMoreCharacters.bind(this);
 
     this.fetchComics = this.fetchComics.bind(this);
+    this.fetchMoreComics = this.fetchMoreComics.bind(this);
 
     this.marvelService = new MarvelService({
       apiKey: this.props.apiKey,
@@ -52,7 +53,7 @@ class App extends Component {
         );
 
     const loadMoreElem = this.state.canLoadMore
-      ? <LoadMore onClick={ this.fetchMoreCharacters }/>
+      ? <LoadMore onClick={ this.state.searchType === 'Characters' ? this.fetchMoreCharacters : this.fetchMoreComics  }/>
       : '';
 
     const detailsElem = this.state.selectedResult
@@ -185,6 +186,24 @@ class App extends Component {
         });
       })
       .catch((err) => {
+        console.error(err);
+        this.setState({ hasError: true });
+      });
+  }
+
+  fetchMoreComics() {
+    this.marvelService.getComics({
+      titleStartsWith: this.state.searchTerm,
+      offset: this.state.results.length,
+    })
+      .then((data) => {
+        this.setState({
+          results: [...this.state.results, ...data.results],
+          canLoadMore: data.total > data.offset + data.count,
+        });
+      })
+      .catch((err) => {
+        // Handle potential errors.
         console.error(err);
         this.setState({ hasError: true });
       });
