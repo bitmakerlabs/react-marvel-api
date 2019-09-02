@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { SearchTypeControls } from './SearchTypeControls';
 
 export class SearchBar extends Component {
   constructor(props) {
@@ -21,11 +20,6 @@ export class SearchBar extends Component {
           value={ this.state.searchTerm }
           placeholder="Heroes search (eg. Spider-Man)"
           onChange={ (e) => this.setState({ searchTerm: e.target.value })}
-        />
-        <SearchTypeControls
-          searchType={ this.props.searchType }
-          onCharactersClick={ () => this.props.onSelect('Characters') }
-          onComicsClick={ () => this.props.onSelect('Comics') }
         />
         <button className="search-bar__submit" type="submit">Search</button>
       </form>
