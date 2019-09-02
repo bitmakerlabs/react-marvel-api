@@ -115,12 +115,21 @@ class App extends Component {
   }
 
   fetchCharacter(id) {
-    console.warn('Whoops, it looks like this method hasn\'t been implemented yet');
+    // console.warn('Whoops, it looks like this method hasn\'t been implemented yet');
+
     // TODO:
     // Invoke the `getCharacter()` method on the marvel service.
     // Pass in the `id`.
-    // Update the application state using the resulting data.
-    // Handle potential errors.
+    this.marvelService.getCharacter(id)
+      .then((data) => {
+        // Update the application state using the resulting data.
+        this.setState({ selectedResult: data.results[0] });
+      })
+      .catch((err) => {
+        // Handle potential errors.
+        console.error(err);
+        this.setState({ hasError: true });
+      });
   }
 }
 
