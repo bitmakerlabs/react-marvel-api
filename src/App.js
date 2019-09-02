@@ -27,6 +27,8 @@ class App extends Component {
     this.fetchCharacter = this.fetchCharacter.bind(this);
     this.fetchMoreCharacters = this.fetchMoreCharacters.bind(this);
 
+    this.fetchComics = this.fetchComics.bind(this);
+
     this.marvelService = new MarvelService({
       apiKey: this.props.apiKey,
     });
@@ -157,6 +159,25 @@ class App extends Component {
       })
       .catch((err) => {
         // Handle potential errors.
+        console.error(err);
+        this.setState({ hasError: true });
+      });
+  }
+
+  fetchComics() {
+    this.setState({ isLoading: true });
+
+    this.marvelService.getComics({
+      titleStartsWith: this.state.searchTerm,
+    })
+      .then((data) => {
+        this.setState({
+          results: data.results,
+          canLoadMore: data.total > data.offset + data.count,
+          isLoading: false,
+        });
+      })
+      .catch((err) => {
         console.error(err);
         this.setState({ hasError: true });
       });

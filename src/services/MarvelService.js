@@ -66,4 +66,16 @@ export class MarvelService {
         return response.data.data;
       });
   }
+
+  // --------------------------------------------------
+  // COMICS-RELATED METHODS
+  // --------------------------------------------------
+  getComics(config = {}) {
+    const params = { ...config, ...this.getAuthConfig() };
+    const endpoint = MarvelService.ENDPOINTS.comics;
+    return axios.get(endpoint, { params: params })
+      .then((response) => {
+        return response.data.data;
+      });
+  }
 }
