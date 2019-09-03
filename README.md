@@ -6,6 +6,11 @@
 - [Setup](#setup)
 - [Branches](#branches)
 - [Exercises](#exercises)
+  - [Exercise 0: Setting Up The Environment](#exercise-0-setting-up-the-environment)
+  - [Exercise 1: Implementing Characters Search](#exercise-1-implementing-characters-search)
+  - [Exercise 2: Viewing Character Details](#exercise-2-viewing-character-details)
+  - [Exercise 3: Implementing 'Load More'](#exercise-3-implementing-load-more)
+  - [Exercise 4: Adding Support For Comics](#exercise-4-adding-support-for-comics)
 - [Resources](#resources)
 - [Attribution](#attribution)
 
@@ -109,7 +114,7 @@ spins up, make sure to restart the application.
 At this point your application should have access to a valid key that will allow
 it to make up to 3,000 requests against the Marvel API per day.
 
-### Exercise 1: Character Search
+### Exercise 1: Implementing Characters Search
 
 #### Before You Start
 Before you start this exercise, please make sure that you've registered for a
@@ -794,7 +799,7 @@ the 'Load More' button should dispatch a request for 'more characters', which
 will be added to the bottom of the page. This process should repeat until all of
 the results for the current search term have been retrieved and displayed.
 
-### Exercise 4: Implement Comic Search, Comic Details, and 'Load More'
+### Exercise 4: Adding Support For Comics
 
 #### Before You Start
 Before starting this exercise, please make sure to complete exercises 1, 2, and
