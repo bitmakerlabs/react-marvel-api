@@ -916,8 +916,8 @@ the string 'Characters'. The `onComicsClick` arrow function will call
 ```
 <SearchTypeControls
   ...
-  onCharactersClick={ this.props.onSelect('Characters') }
-  onComicsClick={ this.props.onSelect('Comics') }
+  onCharactersClick={ () => this.props.onSelect('Characters') }
+  onComicsClick={ () => this.props.onSelect('Comics') }
   ...
 />
 ```
