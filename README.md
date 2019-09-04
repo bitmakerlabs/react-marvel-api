@@ -452,11 +452,11 @@ const params = { ...config, ...this.getAuthConfig() };
 ```
 
 Then we'll move on to defining the `endpoint` variable, which will be a bit
-different. We'll start by assigning `endpoint` equal to the 'comic' endpoint,
-like so:
+different. We'll start by assigning `endpoint` equal to the 'character'
+endpoint, like so:
 
 ```
-const endpoint = MarvelService.ENDPOINTS.comic;
+const endpoint = MarvelService.ENDPOINTS.character;
 ```
 
 However, since the character ID must be included in the request endpoint, we'll
@@ -465,10 +465,10 @@ concatenation or a template literal to achieve this, the choice is yours. The
 string concatenation approach will give you something like this:
 
 ```
-const endpoint = MarvelService.ENDPOINTS.comic + '/' + id;
+const endpoint = MarvelService.ENDPOINTS.character + '/' + id;
 ```
 
-Dont' forget to separate the 'comic' endpoint from the `id` using a forward
+Dont' forget to separate the 'character' endpoint from the `id` using a forward
 slash!
 
 Now that we have our `params` and `endpoint`, we'll use `axios.get()` to
