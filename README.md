@@ -1055,7 +1055,7 @@ should now look something like this:
 ```
 <ResultsList
   ...
-  searchType={ this.props.searchType }
+  searchType={ this.state.searchType }
   ...
 />
 ```
