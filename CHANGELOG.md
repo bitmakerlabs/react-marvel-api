@@ -3,7 +3,7 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
-## [Unreleased]
+## [1.0.2] 2019-09-05
 ### Fixed
 - Fixed incorrect 'title' prop example in Exercise 4, Step 6.
 
