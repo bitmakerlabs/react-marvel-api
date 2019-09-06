@@ -1064,7 +1064,7 @@ Next we'll update the `ResultsList` class definition. Within the `render()`
 method, we'll update the loop which creates the `<ResultCard />` components.
 We'll update the value of the `title` prop to assert that the current
 `searchType` is 'Characters'. If it is, then we'll pass in the `result.name` as
-normal. If it's not, then we're display comic results and we can pass in
+normal. If it's not, then we're displaying comic results and we can pass in
 `result.title`.
 
 At this point, the `<ResultCard />`-related code should look something like
@@ -1072,7 +1072,7 @@ this:
 
 ```
 <ResultCard
-  title={ this.props.searchType === 'Characters' ? result.title : result.name }
+  title={ this.props.searchType === 'Characters' ? result.name : result.title }
 />
 ```
 
